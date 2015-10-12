@@ -1,4 +1,4 @@
-package net.timeclip.www.core;
+package net.timeclip.www.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +34,8 @@ public class ServletConfig extends WebMvcConfigurerAdapter {
         
         return resolver;
     }
+    
+    
     
 
 }

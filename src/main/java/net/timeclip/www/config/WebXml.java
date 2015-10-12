@@ -1,4 +1,4 @@
-package net.timeclip.www.core;
+package net.timeclip.www.config;
 
 import java.util.EnumSet;
 

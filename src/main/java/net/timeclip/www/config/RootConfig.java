@@ -1,4 +1,4 @@
-package net.timeclip.www.core;
+package net.timeclip.www.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class RootConfig {
     
     private final static Logger log = LoggerFactory.getLogger(RootConfig.class);
-
+    
     @Bean
     public InitializingBean init() {
         return new InitializingBean() {
