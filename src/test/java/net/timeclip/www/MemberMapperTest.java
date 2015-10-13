@@ -21,6 +21,13 @@ public class MemberMapperTest {
     
     @Autowired
     private MemberMapper memberMapper;
+    
+    @Test
+    public void before() {
+        memberMapper.deleteAll();
+        memberMapper.save(new Member("test", "test", "test"));
+    }
+    
 
     @Test
     public void findAllMemberTest() {
