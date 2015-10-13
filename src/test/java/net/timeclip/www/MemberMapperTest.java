@@ -13,32 +13,24 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import net.timeclip.www.config.MybatisConfig;
 import net.timeclip.www.config.RootConfig;
 import net.timeclip.www.member.domain.Member;
-import net.timeclip.www.member.repository.MemberRepository;
+import net.timeclip.www.member.repository.MemberMapper;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { RootConfig.class, MybatisConfig.class })
-public class MemberDaoTest {
+public class MemberMapperTest {
     
     @Autowired
-    private MemberRepository memberRepository;
+    private MemberMapper memberMapper;
 
-    @Test
-    public void test() {
-        
-        Integer value = 3;
-        Integer test = memberRepository.test(value);
-        assertThat(test).isEqualTo(value);
-    }
-    
     @Test
     public void findAllMemberTest() {
         
-        List<Member> members = memberRepository.findAll();
+        List<Member> members = memberMapper.findAll();
         assertThat(members).hasSize(1);
         
         Member listMember = members.get(0);
         
-        Member oneMember = memberRepository.findOne(listMember.getUserIdx());
+        Member oneMember = memberMapper.findOne(listMember.getUserIdx());
         
         assertThat(listMember).isEqualTo(oneMember);
         

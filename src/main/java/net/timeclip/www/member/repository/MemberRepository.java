@@ -1,21 +1,23 @@
 package net.timeclip.www.member.repository;
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
+import net.timeclip.www.common.repository.BaseRepository;
 import net.timeclip.www.member.domain.Member;
 
 @Repository
-public interface MemberRepository {
-    
-    @Select(value = "SELECT #{value}")
-    Integer test(Integer value);
-    
-    @Select(value = "SELECT * FROM TB_MEMBER")
-    List<Member> findAll();
-    
-    @Select(value = "SELECT * FROM TB_MEMBER WHERE USERIDX = #{id}")
-    Member findOne(Integer integer);
+public class MemberRepository extends BaseRepository<Member, Long, MemberMapper> {
+
+    @Override
+    public Member save(Member t) {
+        
+        if(t.getUserIdx() == null && super.findOne(t.getUserIdx()) == null) {
+            Long id = super.saveAndGetId(t);
+            t.setUserIdx(id);
+        } else {
+            update(t);
+        }
+        
+        return t;
+    }
 }
