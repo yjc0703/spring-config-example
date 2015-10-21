@@ -5,11 +5,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @EnableWebMvc
 @Configuration
@@ -35,7 +38,13 @@ public class ServletConfig extends WebMvcConfigurerAdapter {
         return resolver;
     }
     
+    @Bean
+    MappingJackson2HttpMessageConverter converter() {
+        
+        MappingJackson2HttpMessageConverter converter
+            = new MappingJackson2HttpMessageConverter(new ObjectMapper());
+        
+        return converter;
+    }
     
-    
-
 }
